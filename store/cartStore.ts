@@ -53,8 +53,6 @@ export const useCartStore = create<CartState>((set, get) => ({
         .filter((it) => it.quantity > 0),
     })),
 
-  // 여기까지 이해
-
   clearCart: () => set({ items: [] }),
 
   getTotalCount: () => get().items.reduce((sum, it) => sum + it.quantity, 0),
