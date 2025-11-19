@@ -12,13 +12,22 @@ export default function CartPage() {
   const totalCount = useCartStore((s) => s.getTotalCount());
   const clearCart = useCartStore((s) => s.clearCart);
 
+  const handleOrder = () => {
+    if (items.length === 0) {
+      alert("장바구니가 비어있습니다!");
+      return;
+    }
+    alert("주문이 완료되었습니다!");
+    clearCart();
+  };
+
   return (
-    <div className="max-w-3xl mx-auto pb-5 ">
+    <div className="max-w-3xl mx-auto pb-5 px-4 lg:px-0 ">
       <div className="flex items-end justify-end mt-3">
         <button
           aria-label="상품 전체 삭제"
           onClick={() => clearCart()}
-          className="bg-neutral-100 hover:bg-neutral-200 transition px-2 py-1.5 rounded-lg text-sm cursor-pointer"
+          className=" bg-neutral-100 hover:bg-neutral-200 transition px-2 py-1.5 rounded-lg text-sm cursor-pointer"
         >
           전체삭제
         </button>
@@ -45,7 +54,7 @@ export default function CartPage() {
                 alt={it.name}
                 width={120}
                 height={120}
-                className="object-cover"
+                className="object-cover rounded-xl"
               />
               <div className="flex flex-col gap-1">
                 <h2 className="text-lg pt-1.5">{it.name}</h2>
@@ -53,14 +62,14 @@ export default function CartPage() {
                 <div className="flex gap-2 items-center">
                   <button
                     onClick={() => changeQuantity(it.id, -1)}
-                    className="bg-neutral-100 w-6 h-6 flex items-center justify-center text-sm rounded-full hover:bg-neutral-200 cursor-pointer transition"
+                    className=" bg-neutral-100 w-6 h-6 flex items-center justify-center text-sm rounded-full hover:bg-neutral-200 cursor-pointer transition"
                   >
                     -
                   </button>
-                  <p className="text-neutral-900">{it.quantity}</p>
+                  <p className="text-neutral-900 ">{it.quantity}</p>
                   <button
                     onClick={() => changeQuantity(it.id, 1)}
-                    className="bg-neutral-100 w-6 h-6 flex items-center justify-center text-sm rounded-full hover:bg-neutral-200 cursor-pointer transition"
+                    className=" bg-neutral-100 w-6 h-6 flex items-center justify-center text-sm rounded-full hover:bg-neutral-200 cursor-pointer transition"
                   >
                     +
                   </button>
@@ -91,7 +100,10 @@ export default function CartPage() {
           <p className="font-bold">{totalPrice.toLocaleString("ko-KR")}원</p>
         </div>
       </div>
-      <button className="bg-black text-white w-full py-2 rounded-xl cursor-pointer mt-8">
+      <button
+        onClick={handleOrder}
+        className=" bg-black text-white w-full py-2 rounded-xl cursor-pointer mt-8"
+      >
         주문하기
       </button>
     </div>
