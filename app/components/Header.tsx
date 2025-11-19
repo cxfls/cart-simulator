@@ -8,7 +8,7 @@ export default function Header() {
   const totalCount = useCartStore((s) => s.getTotalCount());
 
   return (
-    <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white">
+    <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white ">
       <div className="max-w-5xl mx-auto flex items-center justify-between p-3">
         <Link href="/" className="text-2xl font-bold">
           Cart Simulator
